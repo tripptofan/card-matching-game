@@ -1,38 +1,103 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.cards {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-wrap: wrap;
+  margin: 10px 0;
+  max-width: 1024px;
+}
+.cardContainer {
+  background-color: transparent;
+  width: 14vw;
+  height: 14vw;
+  max-width: 150px;
+  max-height: 150px;
+  perspective: 1000px;
+  list-style: none;
+  margin: 4px;
+}
+.cardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: all 0.8s ease-out;
+  transform-style: preserve-3d;
+}
+
+.flip {
+  transform: rotateY(180deg);
+}
+.back,
+.front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.front {
+  background-color: white;
   color: white;
+  transform: rotateY(180deg);
+}
+.back {
+  background: white;
+  cursor: pointer;
+}
+.front img {
+  height: 85%;
 }
 
-.App-link {
-  color: #61dafb;
+.remove {
+  transform: scale(0.01);
+  opacity: 0;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#score {
+  width: 8vw;
+  height: 8vw;
+  max-width: 100px;
+  max-height: 100px;
+  font-size: max(1.5vw, 20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  opacity: 0;
+  transform: scale(0.01);
+  transition: all 100ms ease-out;
+  margin: 1vw 0;
+}
+#score.active {
+  opacity: 1;
+  transform: scale(1);
+}
+.startBtn {
+  font-size: max(1vw, 12px);
+  padding: 8px;
+  border-radius: 5px;
+  margin: 1vh 0;
+  border: none;
+  background: darkturquoise;
+  color: white;
+  transition: all 50ms ease-out;
+  outline: none;
+  cursor: pointer;
+}
+.startBtn:active {
+  transform: scale(0.98);
 }
