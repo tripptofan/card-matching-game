@@ -4,24 +4,24 @@ import Fade from 'react-reveal/Fade';
 
 
 /*Images*/
-import pic0 from './Images/0.jpg' 
-import pic1 from './Images/1.jpg' 
-import pic2 from './Images/2.jpg' 
-import pic3 from './Images/3.jpg' 
-import pic4 from './Images/4.jpg' 
-import pic5 from './Images/5.jpg' 
-import pic6 from './Images/6.jpg' 
-import pic7 from './Images/7.jpg' 
-import pic8 from './Images/8.jpg' 
-import pic9 from './Images/9.jpg' 
-import pic10 from './Images/10.jpg' 
-import pic11 from './Images/11.jpg' 
-import pic12 from './Images/12.jpg' 
-import pic13 from './Images/13.jpg' 
-import pic14 from './Images/14.jpg' 
-import pic15 from './Images/15.jpg' 
-import pic16 from './Images/16.jpg' 
-import pic17 from './Images/17.jpg' 
+// import pic0 from './Images/0.jpg' 
+// import pic1 from './Images/1.jpg' 
+// import pic2 from './Images/2.jpg' 
+// import pic3 from './Images/3.jpg' 
+// import pic4 from './Images/4.jpg' 
+// import pic5 from './Images/5.jpg' 
+// import pic6 from './Images/6.jpg' 
+// import pic7 from './Images/7.jpg' 
+// import pic8 from './Images/8.jpg' 
+// import pic9 from './Images/9.jpg' 
+// import pic10 from './Images/10.jpg' 
+// import pic11 from './Images/11.jpg' 
+// import pic12 from './Images/12.jpg' 
+// import pic13 from './Images/13.jpg' 
+// import pic14 from './Images/14.jpg' 
+// import pic15 from './Images/15.jpg' 
+// import pic16 from './Images/16.jpg' 
+// import pic17 from './Images/17.jpg' 
 
 
 
@@ -32,9 +32,12 @@ const [score, setScore] = useState(0);
 const [cards, setCards] = useState();
 const [flipped, setFlipped] = useState([])
 
-const images = [pic0,pic1,pic2,pic3,pic4,pic5,pic6,pic7,pic8,pic9,pic10,pic11,pic12,pic13,pic14,pic15,pic16,pic17,pic0,pic1,pic2,pic3,pic4,pic5,pic6,pic7,pic8,pic9,pic10,pic11,pic12,pic13,pic14,pic15,pic16,pic17];
+// const images = [pic0,pic1,pic2,pic3,pic4,pic5,pic6,pic7,pic8,pic9,pic10,pic11,pic12,pic13,pic14,pic15,pic16,pic17,pic0,pic1,pic2,pic3,pic4,pic5,pic6,pic7,pic8,pic9,pic10,pic11,pic12,pic13,pic14,pic15,pic16,pic17];
 
-
+const context = require.context("./Images", true, /\.(jpg)$/);
+const images = context.keys().map(img => context(img)).reduce((res, current) => {
+  return res.concat([current, current]);
+}, []);
 
 
 function shuffle(array) {
@@ -53,6 +56,7 @@ function shuffle(array) {
 }
 
 const initialize = () => {
+  
   if(!cards){
     document.getElementById('score').classList.toggle('active');
   }
@@ -98,17 +102,22 @@ const remove = () => {
 
 
 useEffect(() => {
+  if(!cards){
+    initialize();
+  }
   if(flipped.length === 2){
     setTimeout(() => {
       checkCards()
-    }, 2000)
+    }, 1500)
   }
+  
 },[flipped])
 
   return (
 
     <div className="App">
- 
+ {console.log(images)}
+
 {cards ? <ul className='cards'>
 
 {cards.map(c => 
@@ -116,7 +125,7 @@ useEffect(() => {
 <li className='cardContainer' >
   <div className='cardInner' id={c.id}>
     <div className='front'>
-    <img src={c.card}/>
+    <img src={c.card.default}/>
     </div>
     <div className='back' onClick={() => flip(c)}>
     </div>
@@ -136,7 +145,7 @@ useEffect(() => {
 
 
 <div id='score'>{score}</div>
-<button className='startBtn' onClick={() => initialize()}>New Game</button>
+<button className='startBtn' onClick={() => window.location.reload()}>New Game</button>
   </div>
   )
 }

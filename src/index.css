@@ -1,7 +1,8 @@
-body,
-html {
-  width: 100%;
+body {
   height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
   padding: 0;
   margin: 0;
   background: rgb(96, 221, 213);
@@ -13,6 +14,9 @@ html {
     rgba(254, 190, 255, 1) 100%
   );
 }
+html {
+  height: 100%;
+}
 ul,
 li,
 img,
@@ -21,4 +25,9 @@ span,
 p {
   margin: 0;
   padding: 0;
+}
+@media only screen and (max-width: 1024px) {
+  html {
+    height: auto;
+  }
 }
