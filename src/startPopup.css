@@ -1,0 +1,8 @@
+.startPopup {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: 20rem;
+    background: pink;
+    border-radius: 1rem;
+}
