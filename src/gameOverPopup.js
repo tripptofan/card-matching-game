@@ -11,6 +11,7 @@ const GameOverPopupWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow: hidden;
 `;
 const GameOverPopup = styled.div`
   margin-top: 5rem;
@@ -19,8 +20,9 @@ const GameOverMessage = styled.h1``;
 const Frog = styled.img`
   position: absolute;
   bottom: 0;
-  width: 100%;
   height: 80%;
+  width: auto;
+  object-fit: contain;
   animation: fadeIn 1s ease-in-out;
 
   @keyframes fadeIn {
